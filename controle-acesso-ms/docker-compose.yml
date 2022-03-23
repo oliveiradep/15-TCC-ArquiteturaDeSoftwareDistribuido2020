@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  db:
+    image: mongo:latest
+    command: mongod --port 27018
+    ports:
+      - '27018:27018'
+
+  app:
+    build: .
+    ports:
+      - '3001:3001'
+    links:
+      - db
+    restart: on-failure
